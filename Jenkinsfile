@@ -7,11 +7,9 @@ pipeline {
         // REGION = 'ap-south-1'
     }
     parameters {
-    //     // choice name: 'CITY', choices: cityList, description: 'City for SaaS job'
-        AWS_ACCESS_KEY_ID                     = credentials('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_ACCESS_KEY                 = credentials('AWS_SECRET_ACCESS_KEY')
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         booleanParam(name: 'run_script', defaultValue: true, description: 'when to push the code to to allow not to run script')
-    //     booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
     }
 
     stages {
