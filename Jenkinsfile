@@ -4,11 +4,11 @@ pipeline {
         // AWS_REGION = 'us-east-2'
         // AWS_DEFAULT_REGION = 'us-east-2'
         terraformCmd = 'terraform'
+        AWS_ACCESS_KEY_ID = credentials('aws-access-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
         // REGION = 'ap-south-1'
     }
     parameters {
-        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         booleanParam(name: 'run_script', defaultValue: true, description: 'when to push the code to to allow not to run script')
     }
 
