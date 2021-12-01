@@ -17,6 +17,7 @@ pipeline {
             when {
                 expression { params.run_script == true }
             }
+
             stages {
                 stage('initialize terraform') {
                     steps {
@@ -24,6 +25,16 @@ pipeline {
                         // sh "cat terraform.tfvars"
                         echo 'Running terraform init command'
                         sh "${terraformCmd} init"
+                    }
+                }
+
+                stage('caddy-pass') {
+                    steps {
+                            sh """
+                                set DOCKER_HOST=tcp://localhost:2375
+                                echo '$(uuidgen)' > uuid.txt
+                                cat uuid.txt
+                                """
                     }
                 }
 
