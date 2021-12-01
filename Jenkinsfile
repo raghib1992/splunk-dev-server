@@ -34,6 +34,7 @@ pipeline {
                             set DOCKER_HOST=tcp://localhost:2375
                             echo `uuidgen` > uuid.txt
                             cat uuid.txt
+                            docker run --rm -it caddy:2.0.0 caddy hash-password -plaintext mytext > pass.txt
                             """
                     }
                 }
