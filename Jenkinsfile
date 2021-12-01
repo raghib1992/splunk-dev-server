@@ -31,6 +31,7 @@ pipeline {
                 stage('caddy-pass') {
                     steps {
                         sh """
+                            pwd; whoami
                             set DOCKER_HOST=tcp://localhost:2375
                             echo `uuidgen` > uuid.txt
                             cat uuid.txt
