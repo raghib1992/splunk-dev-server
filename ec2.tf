@@ -12,15 +12,15 @@
 #     ],
 #     "InvalidParameters": []
 # }
-resource "aws_kms_key" "a" {
-  description             = "this is to encrypt and decrypt the splunk root volume"
-  deletion_window_in_days = 7
-  tags = {
-    Name = "splunk-${var.name_prefix}-key"
-    sc_purpose = "trail"
-    sc_customer = var.name_prefix
-  }
-}
+# resource "aws_kms_key" "a" {
+#   description             = "this is to encrypt and decrypt the splunk root volume"
+#   deletion_window_in_days = 7
+#   tags = {
+#     Name = "splunk-${var.name_prefix}-key"
+#     sc_purpose = "trail"
+#     sc_customer = var.name_prefix
+#   }
+# }
 
 resource "aws_route53_record" "splunk-instance" {
   zone_id = var.route53_zone_id
@@ -95,11 +95,11 @@ resource "aws_instance" "splunk_instance" {
   root_block_device {
       delete_on_termination = true  #change to fasle
       encrypted = true
-      kms_key_id = aws_kms_key.a.id
+      # kms_key_id = aws_kms_key.a.id
       volume_size = 100 # change to 256
   }
   subnet_id = "subnet-c9093ea0" # change the tenant subnet id
-  user_data = base64encode(data.template_file.splunk-template.rendered)
+  # user_data = base64encode(data.template_file.splunk-template.rendered)
   vpc_security_group_ids = [aws_security_group.splunk-sg.id]
   tags = {
     Name = "splunk-${var.name_prefix}-instance"
@@ -108,12 +108,12 @@ resource "aws_instance" "splunk_instance" {
   }
 }
 
-data "template_file" "splunk-template"{
-    template = file("test.template")
+# data "template_file" "splunk-template"{
+#     template = file("test.template")
     
-    vars = {
-        customer = var.name_prefix
-        # uuid = var.UUID
-        # caddy_auth = var.CADDY_AUTH
-    }
-}
+#     vars = {
+#         customer = var.name_prefix
+#         # uuid = var.UUID
+#         # caddy_auth = var.CADDY_AUTH
+#     }
+# }
