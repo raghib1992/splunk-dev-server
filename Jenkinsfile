@@ -30,11 +30,11 @@ pipeline {
 
                 stage('caddy-pass') {
                     steps {
-                            sh """
-                                set DOCKER_HOST=tcp://localhost:2375
-                                echo '$(uuidgen)' > uuid.txt
-                                cat uuid.txt
-                                """
+                        sh """
+                            set DOCKER_HOST=tcp://localhost:2375
+                            echo `uuidgen` > uuid.txt
+                            cat uuid.txt
+                            """
                     }
                 }
 
