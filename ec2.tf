@@ -99,7 +99,7 @@ resource "aws_instance" "splunk_instance" {
       volume_size = 100 # change to 256
   }
   subnet_id = "subnet-c9093ea0" # change the tenant subnet id
-  # user_data = base64encode(data.template_file.splunk-template.rendered)
+  user_data = base64encode(data.template_file.splunk-template.rendered)
   vpc_security_group_ids = [aws_security_group.splunk-sg.id]
   tags = {
     Name = "splunk-${var.name_prefix}-instance"
@@ -108,12 +108,12 @@ resource "aws_instance" "splunk_instance" {
   }
 }
 
-# data "template_file" "splunk-template"{
-#     template = file("test.template")
+data "template_file" "splunk-template"{
+    template = file("test.template")
     
-#     vars = {
-#         customer = var.name_prefix
-#         # uuid = var.UUID
-#         # caddy_auth = var.CADDY_AUTH
-#     }
-# }
+    vars = {
+        customer = var.name_prefix
+        # uuid = var.UUID
+        # caddy_auth = var.CADDY_AUTH
+    }
+}
