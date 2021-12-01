@@ -3,7 +3,7 @@ variable "name_prefix" {
   description = "Prefix for all AWS resource names"
 }
 
-# variable "route53_zone_id" {}
+variable "route53_zone_id" {}
 
 # variable "profile" {
 #   description = "aws profile on which you want to run terraform"
