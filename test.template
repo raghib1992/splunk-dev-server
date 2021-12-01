@@ -11,11 +11,9 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 
 set DOCKER_HOST=tcp://localhost:2375
-# docker run --rm -it caddy:2.0.0 caddy hash-password -plaintext mytext
 export uuid=$(uuidgen)
 echo "$uuid" > /opt/splunk/uuid.txt
-docker run -d --name hash-pass caddy:2.0.0 caddy hash-password -plaintext $uuid
-export pass=$(sudo docker run --rm -it caddy:2.0.0 caddy hash-password -plaintext mytext)
+export pass=$(docker run --rm -i caddy:2.0.0 caddy hash-password -plaintext mytext)
 echo "$pass" > /opt/splunk/pass.txt
 echo "### Begin docker-compose.yml ###
 version: '3.6'
