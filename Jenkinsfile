@@ -55,7 +55,7 @@ pipeline {
                 stage ('terraform_apply') {
                     steps {
                         echo 'running apply stage'
-                        sh "pwd;${terraformCmd} apply -input=false tfplan"
+                        sh "pwd;${terraformCmd} destroy -input=false tfplan"
                     }
                 }
             }
