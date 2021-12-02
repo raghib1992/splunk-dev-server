@@ -71,7 +71,7 @@ splunk.${customer}.mumbai.internal.folium.cloud
   expression !{path}.startsWith("/services")
 }
 basicauth @authenticated {
-  admin {$pass}
+  admin $pass
 }
 
 reverse_proxy splunk:8000 {
