@@ -45,7 +45,8 @@ services:
         aliases:
           - splunk
           - SplunkServerDefaultCert
-
+    ports:
+      - 8088:8088
   proxy:
     image: caddy:2.0.0
     command: caddy run --config /Caddyfile
@@ -65,6 +66,13 @@ services:
 
 echo "### Begin Caddyfile ###
 splunk.${customer}.mumbai.internal.folium.cloud
+
+@authenticated {
+  expression !{path}.startsWith("/services")
+}
+basicauth @authenticated {
+  admin $pass
+}
 
 reverse_proxy splunk:8000 {
   transport http {
