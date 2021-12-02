@@ -47,7 +47,7 @@ services:
           - SplunkServerDefaultCert
     ports:
       - 8000:8000
-      - 8088:8088
+      
   proxy:
     image: caddy:2.0.0
     command: caddy run --config /Caddyfile
