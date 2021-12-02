@@ -67,6 +67,13 @@ services:
 echo "### Begin Caddyfile ###
 splunk.${customer}.mumbai.internal.folium.cloud
 
+@authenticated {
+  expression !{path}.startsWith("/services")
+}
+basicauth @authenticated {
+  admin {$pass}
+}
+
 reverse_proxy splunk:8000 {
   transport http {
     tls
