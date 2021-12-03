@@ -92,4 +92,4 @@ openssl req -x509 -newkey rsa:4096 -keyout /opt/splunk/splunk.key -out /opt/splu
 openssl req -x509 -newkey rsa:4096 -keyout /opt/splunk/splunk.hec.key -out /opt/splunk/splunk.hec.crt -days 3650 -nodes -subj "/CN=SplunkServerDefaultCert"
 rm -f /opt/splunk/splunk.hec.key
 # cp /opt/splunk/splunk.crt /opt/splunk/splunk.hec.crt
-docker-compose up -d
+docker-compose up -d && docker-compose logs -f
