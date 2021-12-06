@@ -64,10 +64,10 @@ services:
 
 
 echo "### Begin Caddyfile ###
-splunk.sanober.mumbai.internal.folium.cloud
+splunk.${customer}.mumbai.internal.folium.cloud
 
 @authenticated {
-  expression !{path}.startsWith("/services")
+  expression !{path}.startsWith("services")
 }
 basicauth @authenticated {
   admin $pass

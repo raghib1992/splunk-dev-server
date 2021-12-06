@@ -111,9 +111,9 @@ resource "aws_instance" "splunk_instance" {
 data "template_file" "splunk-template"{
     template = file("test.template")
     
-    # vars = {
-    #     customer = var.name_prefix
+    vars = {
+        customer = var.name_prefix
     #     # uuid = var.UUID
     #     # caddy_auth = var.CADDY_AUTH
-    # }
+    }
 }
