@@ -63,7 +63,7 @@ services:
 " > /opt/splunk/docker-compose.yml
 
 
-echo "### Begin Caddyfile ###
+echo '### Begin Caddyfile ###
 splunk.${customer}.mumbai.internal.folium.cloud
 
 @authenticated {
@@ -86,7 +86,7 @@ reverse_proxy /services/collector* SplunkServerDefaultCert:8088 {
   }
 }
 ### End Caddyfile ###
-" > /opt/splunk/Caddyfile
+' > /opt/splunk/Caddyfile
 
 openssl req -x509 -newkey rsa:4096 -keyout /opt/splunk/splunk.key -out /opt/splunk/splunk.crt -days 3650 -nodes -subj "/CN=splunk"
 openssl req -x509 -newkey rsa:4096 -keyout /opt/splunk/splunk.hec.key -out /opt/splunk/splunk.hec.crt -days 3650 -nodes -subj "/CN=SplunkServerDefaultCert"
